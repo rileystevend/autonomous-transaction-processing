@@ -249,3 +249,130 @@ Order Entry Schemas Tables
                                                             Total Space           1.8GB
 
 Step 7/ Run a workload
+The first thing we need to do is to configure the load generator to load the users on in a sensible fashion (i.e. to not exceed the login rate). You could do this manually by editing the config file or use the following command.
+sed -i -e 's/<LogonGroupCount>1<\/LogonGroupCount>/<LogonGroupCount>5<\/LogonGroupCount>/' \
+       -e 's/<LogonDelay>0<\/LogonDelay>/<LogonDelay>300<\/LogonDelay>/' \
+       -e 's/<WaitTillAllLogon>true<\/WaitTillAllLogon>/<WaitTillAllLogon>false<\/WaitTillAllLogon>/' \
+       ../configs/SOE_Server_Side_V2.xml
+view rawsedcommand.sh hosted with ❤ by GitHub
+
+We can now run a workload against the newly created schema using a command similar to 
+./charbench -c ../configs/SOE_Server_Side_V2.xml \
+            -cf ~/wallet_SBATP.zip \
+            -cs sbatp_low \
+            -u soe \
+            -p <your soe password> \
+            -v users,tpm,tps,vresp \
+            -intermin 0 \
+            -intermax 0 \
+            -min 0 \
+            -max 0 \
+            -uc 128 \
+            -di SQ,WQ,WA \
+            -rt 0:0.30
+view rawcharbenchcommad.sh hosted with ❤ by GitHub
+
+I won’t explain the parameters that I detailed earlier when running the wizard but for the new ones do the following
+
+•	-v indicates what info should be shown in the terminal when running the command. In this instance I’ve asked that the users logged on, Tx/Min, Tx/Sec and the average response time for each transaction are shown.
+•	-min and -max indicate the time to sleep between each DML operation in a transaction (intra sleep). A Transaction is made up of many DML operations
+•	-intermin -intermax indicates the time to sleep between each transaction.
+•	-di indicates that I want to disable the following transactions SQ,WQ,WA. These are reporting queries and aren’t really needed.
+•	-rt indicates how long to run the benchmark before stopping it
+
+You should see output similar to the following
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+$> ./charbench -c ../configs/SOE_Server_Side_V2.xml -cf ~/wallet_SBATP.zip -cs sbatp_low -u soe -p < your soe password > -v users,tpm,tps,vresp -intermin 0 -intermax 0 -min 0 -max 0 -uc 128 -di SQ,WQ,WA -rt 0:0.30
+Author  :    Dominic Giles
+Version :    2.6.0.1082
+ 
+Results will be written to results.xml.
+Hit Return to Terminate Run...
+ 
+Time        Users   TPM TPS NCR UCD BP  OP  PO  BO  SQ  WQ  WA
+17:29:53    [0/128] 0   0   0   0   0   0   0   0   0   0   0
+17:29:54    [0/128] 0   0   0   0   0   0   0   0   0   0   0
+17:29:55    [0/128] 0   0   0   0   0   0   0   0   0   0   0
+17:29:56    [40/128]    0   0   0   0   0   0   0   0   0   0   0
+17:29:57    [45/128]    0   0   0   0   0   0   0   0   0   0   0
+17:29:58    [51/128]    0   0   0   0   0   0   0   0   0   0   0
+17:29:59    [60/128]    0   0   0   0   0   0   0   0   0   0   0
+17:30:00    [69/128]    0   0   0   0   0   0   0   0   0   0   0
+17:30:01    [78/128]    0   0   0   0   0   0   0   0   0   0   0
+17:30:02    [84/128]    0   0   0   0   0   0   0   0   0   0   0
+17:30:03    [95/128]    0   0   0   0   0   0   0   0   0   0   0
+17:30:04    [101/128]   0   0   0   0   0   0   0   0   0   0   0
+17:30:05    [104/128]   0   0   419 395 547 554 0   570 0   0   0
+17:30:06    [108/128]   118 118 653 110 379 1576    375 647 0   0   0
+17:30:07    [116/128]   325 207 355 220 409 406 499 450 0   0   0
+17:30:08    [128/128]   547 222 423 100 203 504 403 203 0   0   0
+17:30:09    [128/128]   831 284 420 306 303 396 501 505 0   0   0
+17:30:10    [128/128]   1133    302 344 234 232 884 603 217 0   0   0
+17:30:11    [128/128]   1438    305 564 367 355 375 559 376 0   0   0
+17:30:12    [128/128]   1743    305 443 150 323 319 233 143 0   0   0
+17:30:13    [128/128]   2072    329 1712    179 108 183 325 179 0   0   0
+17:30:14    [128/128]   2444    372 1036    102 147 204 194 134 0   0   0
+17:30:15    [128/128]   2807    363 1584    85  182 234 179 169 0   0   0
+17:30:16    [128/128]   3241    434 741 159 157 250 256 251 0   0   0
+17:30:17    [128/128]   3653    412 517 91  178 181 176 137 0   0   0
+
+We specified a runtime of 30 seconds (-rt 0:0.30) which meant the workload ran for a short period of time. You could increase this by changing the the -rt parameter to something larger like 
+
+-rt 1:30
+
+Which would run the benchmark for 1 hour 30mins. or you could leave the -rt command off altogether and the benchmark would run until you hit return.
+
+One thing to try whilst running the load against the server is to try and scale the number of available CPUs to the ATP instance up and down. This should see an increase in the number of transactions being processed.
+
+Screenshot of Google Chrome (10-08-2018, 18-45-10)
+
+Somethings to note. At the end of each run you’ll end up with a results file in xml format in the directory you ran charbench from. i.e.
+1
+2
+3
+4
+$ ls
+bmcompare  clusteroverview  debug.log   oewizard          results00003.xml  results00006.xml  results00009.xml  sbutil      swingbench
+ccwizard   coordinator      jsonwizard  results00001.xml  results00004.xml  results00007.xml  results2pdf       shwizard    tpcdswizard
+charbench  data             minibench   results00002.xml  results00005.xml  results00008.xml  results.xml       sqlbuilder
+
+
+These xml files contain the detailed results of each run i.e. average transactions per second, completed transactions, percentile response times etc. Whilst these are difficult to read you can install swingbench on a windows or mac and use a utility called results2pdf to convert them into a more human parseable form. You can find some details on how to do that here.
+
+http://www.dominicgiles.com/blog/files/86668db677bc5c3fc1f0a0231d595ebc-139.html
+
+Using the methods above you should be able to create scripts that test the performance of the ATP server. i.e. running loads with different CPU counts, users, think times etc.
+
+But beware that before comparing the results with on premise servers there are a lot of features enabled on the ATP server like db_block_checking and db_check_sum that may not be enabled on another Oracle instance.
