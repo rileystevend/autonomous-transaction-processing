@@ -13,11 +13,15 @@ It’s the .pub file or more precisely its contents that you’ll need. The publ
 
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfO/80wleUCYxY7Ws8c67PmqL2qRUfpdPGOduHmy9xT9HkCzjoZHHIk1Zx1VpFtQQM+RwJzArZQHXrMnvefleH20AvtbT9bo2cIIZ8446DX0hHPGaGYaJNn6mCeLi/wXW0+mJmKc2xIdasnH8Q686zmv72IZ9UzD12o+nns2FgCwfleQfyVIacjfi+dy4DB8znpb4KU5rKJi5Zl004pd1uSrRtlDKR9OGILvakyf87CnAP/T8ITSMy0HWpqc8dPHJq74S5jeQn/TxrZ6TGVA+xGLzLHN4fLCOGY20gH7w3rqNTqFuUIWuIf4OFdyZoFBQyh1GWMOaKjplUonBmeZlV
 
+Run this command from your terminal to copy it:
+pbcopy < ~/.ssh/id_rsa.pub
+
 Note that yours will be different. You’ll need this in step 3.
 
-TIP: If you already have a key that you have generated in the past and would like to use it, please note that yours may not be in PEM mode and OCI only accepts PEM format keys. In order to convert your RSA key to PEM format run this command:
+IMPORTANT TIP: If you already have a key that you have generated in the past and would like to use it, please note that yours may not be in PEM mode and OCI only accepts PEM format keys. In order to convert your RSA key to PEM format run this command:
 
 ssh-keygen -f id_rsa.pub -e -m pkcs8
+
 
 Step 2/ Create the ATP Instance
 
