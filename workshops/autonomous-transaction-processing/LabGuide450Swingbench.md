@@ -1,5 +1,6 @@
 Setting up Swingbench for Oracle Autonomous Transaction Processing (ATP)
-14/08/18 15:18
+[much of this section may need modification if utilizing Terraform]
+
 The following blog details how to install swingbench against ATP and use it to run load tests. The example below used the Simple Order Entry (SOE) benchmark but its possible to follow the methodology laid out below to run any of the other supplied benchmarks (SH, TPC-DS etc). To do this you’ll need to run through the following steps (Step 8 is optional). 
 
 Step 1/ Make Sure you have a SSH Public key
@@ -14,12 +15,15 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfO/80wleUCYxY7Ws8c67PmqL2qRUfpdPGOduHmy9x
 
 Note that yours will be different. You’ll need this in step 3.
 
+TIP: If you already have a key that you have generated in the past and would like to use it, please note that yours may not be in PEM mode and OCI only accepts PEM format keys. In order to convert your RSA key to PEM format run this command:
+
+ssh-keygen -f id_rsa.pub -e -m pkcs8
+
 Step 2/ Create the ATP Instance
 
 You’ll have to have gone through the process of acquiring an Oracle Cloud account but that’s beyond the scope of this walkthrough. Once you have the account and have logged into Oracle Cloud Infrastructure, click on the menu button in the top left of the screen and select “Autonomous Transaction Processing”. Then simply follow these steps.
 
-ATP 11-08-18, 9.48.53 am
-
+[screenshots]
 
 Step 3/ Create a compute resource for the application server
 
@@ -27,7 +31,7 @@ Whilst the ATP instance is creating we can create our application to run swingbe
 
 In this walkthrough we’ll create a small 2 core Linux Server VM.
 
-Iaas Creation 11-08-18, 9.48.29 am
+[screenshots]
 
 This should only take a couple of minutes. On completion we’ll need to use the public IP address of the application server we created in the previous step.
 
