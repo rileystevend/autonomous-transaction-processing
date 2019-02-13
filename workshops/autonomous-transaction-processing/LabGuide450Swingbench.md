@@ -12,7 +12,7 @@ It’s the .pub file or more precisely its contents that you’ll need. The publ
 
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfO/80wleUCYxY7Ws8c67PmqL2qRUfpdPGOduHmy9xT9HkCzjoZHHIk1Zx1VpFtQQM+RwJzArZQHXrMnvefleH20AvtbT9bo2cIIZ8446DX0hHPGaGYaJNn6mCeLi/wXW0+mJmKc2xIdasnH8Q686zmv72IZ9UzD12o+nns2FgCwfleQfyVIacjfi+dy4DB8znpb4KU5rKJi5Zl004pd1uSrRtlDKR9OGILvakyf87CnAP/T8ITSMy0HWpqc8dPHJq74S5jeQn/TxrZ6TGVA+xGLzLHN4fLCOGY20gH7w3rqNTqFuUIWuIf4OFdyZoFBQyh1GWMOaKjplUonBmeZlV
 
-You’ll need this in step 3.
+Note that yours will be different. You’ll need this in step 3.
 
 Step 2/ Create the ATP Instance
 
@@ -36,17 +36,14 @@ Step 4/ Log onto application server and setup the environment
 In this step we’ll use ssh to log onto the application server and setup the environment to run swingbench. Ssh is natively available on MacOS and Linux. On platforms like Windows you can use Putty. You’ll need the IP address of the application server you created in the previous step.
 
 First bring up a terminal on Linux/Mac. On Putty launch a new ssh session. The username will be “opc”
-1
+
 ssh opc@< IP Address of Appserver >
 
 You should see something similar to 
-1
-2
-3
-4
-5
-6
+
 $> ssh opc@129.146.65.101
+
+
 ECDSA key fingerprint is SHA256:kNbpKWL3M1wB6PUFy2GOl+JmaTIxLQiggMzn6vl2qK1tM.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '129.146.65.101' (ECDSA) to the list of known hosts.
@@ -131,29 +128,7 @@ A quick explanation of the parameters we are using
 You should see the following output. A scale of 1 should take just over 5 mins to create. If you specified more CPUs for the application server of ATP instance you should see some improvements in performance, but this is unlikely to truly linear because of the nature of the code.
 1
 2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
+
 SwingBench Wizard
 Author  :    Dominic Giles
 Version :    2.6.0.1082
