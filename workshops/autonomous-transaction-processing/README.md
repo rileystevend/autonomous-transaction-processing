@@ -107,7 +107,7 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 - Learn how to create tables in your database
 - Learn how to load data from the Object Store
 
-**[Click here to run Lab 4](LabGuide400DataLoadingIntoATP.md)**
+**[Click here to run Lab 4](LabGuide400Swingbench.md)**
 
 ## Lab 4.5: Running Swingbench against ATP
 
