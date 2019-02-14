@@ -107,7 +107,19 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 - Learn how to create tables in your database
 - Learn how to load data from the Object Store
 
-**[Click here to run Lab 4](LabGuide400DataLoadingIntoATP.md)**
+**[Click here to run Lab 4](LabGuide400Swingbench.md)**
+
+## Lab 4.5: Running Swingbench against ATP
+
+**Key Objectives**:
+
+- Learn how to deploy Swingbench on a VM in OCI
+- Learn how to configure Swingbench
+- Learn how to connect Swingbench to an ATP instance
+- Learn how to run workloads against ATP
+- Observe how transaction capacity changes as ATP scales
+
+**[Click here to run Lab 4.5](LabGuide450DataLoadingIntoATP.md)**
 
 ## Lab 5: Configure node.js app with ATP
 
