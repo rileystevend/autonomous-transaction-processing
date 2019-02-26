@@ -102,6 +102,8 @@ $> scp wallet_SBATP.zip opc@129.146.65.101:
 
 This will place our credentials file in the home directory of the application server. You don’t need to unzip it to use it.
 
+**NEXT : SSH BACK INTO THE SWINGBENCH CLIENT**
+
 Step 6/ Install a workload schema into the ATP instance
 
 We can now install a schema to run our transactions against. We do this by first changing in to the swingbench bin directory
