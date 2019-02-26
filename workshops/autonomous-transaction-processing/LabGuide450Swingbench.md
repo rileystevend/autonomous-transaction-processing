@@ -83,6 +83,10 @@ and unzip it
 
 $> unzip swingbench.zip
 
+replace swingbench/launcher/launcher.xml? [y]es, [n]o, [A]ll, [N]one, [r]ename:
+
+no
+
 Step 5/ Download the credentials file
 
 The next step is to get the credentials file for ATP. You can do this by following these steps.
