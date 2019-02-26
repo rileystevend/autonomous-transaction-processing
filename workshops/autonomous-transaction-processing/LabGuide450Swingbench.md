@@ -92,6 +92,8 @@ Credentials 11-08-18, 4.09.07 pm
 
 **Also show how to pull this via API/CLI?**
 
+**YOU MUST NOT USE SPECIAL CHARACTERS IN THE WALLET PASSWORD**
+
 You’ll need to upload this to our application server with a command similar to 
 
 $> scp wallet_SBATP.zip opc@129.146.65.101:
