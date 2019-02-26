@@ -96,6 +96,8 @@ Credentials 11-08-18, 4.09.07 pm
 
 You’ll need to upload this to our application server with a command similar to 
 
+**YOU MUST FIRST CD INTO THE DIRECTORY ON YOUR LOCAL MACHINE WHERE YOUR WALLET IS SAVED. DO NOT PERFORM THIS COMMAND AFTER SSH**
+
 $> scp wallet_SBATP.zip opc@129.146.65.101:
 
 This will place our credentials file in the home directory of the application server. You don’t need to unzip it to use it.
