@@ -92,11 +92,17 @@ Credentials 11-08-18, 4.09.07 pm
 
 **Also show how to pull this via API/CLI?**
 
+**YOU MUST NOT USE SPECIAL CHARACTERS IN THE WALLET PASSWORD**
+
 You’ll need to upload this to our application server with a command similar to 
+
+**YOU MUST FIRST CD INTO THE DIRECTORY ON YOUR LOCAL MACHINE WHERE YOUR WALLET IS SAVED. USE A NEW TERMINAL WINDOW (WHILE OTHER IS HOLDING THE SSH CONNECTION)AND ENTER THIS COMMAND**
 
 $> scp wallet_SBATP.zip opc@129.146.65.101:
 
 This will place our credentials file in the home directory of the application server. You don’t need to unzip it to use it.
+
+**NEXT : SSH BACK INTO THE SWINGBENCH CLIENT**
 
 Step 6/ Install a workload schema into the ATP instance
 
