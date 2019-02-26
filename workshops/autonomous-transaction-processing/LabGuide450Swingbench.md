@@ -124,7 +124,9 @@ And then running the following command replacing your passwords with those that 
            -create \
            -cl \
            -v
-view rawoewizardcommand.zip hosted with ❤ by GitHub
+           
+Without lines\/
+./oewizard -cf ~/Wallet_SwingbenchATPZ.zip -cs swingbenchatpx_medium -ts DATA -dbap <database password!!> Vicfirth91390 -dba admin -u soe -p Vicfirth91390 -async_off -scale 5 -hashpart -create -cl -v
 
 A quick explanation of the parameters we are using
 
@@ -141,6 +143,9 @@ A quick explanation of the parameters we are using
 -create tells swingbench to create the schema (-drop will delete the schema)
 -cl tells swingbech to run in character mode
 -v tells swingbench to output whats going on (verbose mode)
+
+**this process can take over 30 minutes!!!** but only on initialization
+
 
 You should see the following output. A scale of 1 should take just over 5 mins to create. If you specified more CPUs for the application server of ATP instance you should see some improvements in performance, but this is unlikely to truly linear because of the nature of the code.
 1
