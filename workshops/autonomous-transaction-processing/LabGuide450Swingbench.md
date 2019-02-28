@@ -144,7 +144,7 @@ A quick explanation of the parameters we are using
 -cl tells swingbech to run in character mode
 -v tells swingbench to output whats going on (verbose mode)
 
-**this process can take over 30 minutes!!!** but only on initialization
+**this process can take over 3 hours!!! Scale ATP UP FIRST :D ** but only on initialization
 
 
 You should see the following output. A scale of 1 should take just over 5 mins to create. If you specified more CPUs for the application server of ATP instance you should see some improvements in performance, but this is unlikely to truly linear because of the nature of the code.
