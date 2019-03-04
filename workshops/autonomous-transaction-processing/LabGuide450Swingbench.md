@@ -1,7 +1,8 @@
 Setting up Swingbench for Oracle Autonomous Transaction Processing (ATP)
 [much of this section may need modification if utilizing Terraform]
 
-The following blog details how to install swingbench against ATP and use it to run load tests. The example below used the Simple Order Entry (SOE) benchmark but its possible to follow the methodology laid out below to run any of the other supplied benchmarks (SH, TPC-DS etc). To do this you’ll need to run through the following steps (Step 8 is optional). 
+Overview:
+The following instructions detail how to install swingbench against ATP and use it to run load tests. The example below used the Simple Order Entry (SOE) benchmark but its possible to follow the methodology laid out below to run any of the other supplied benchmarks (SH, TPC-DS etc). To do this you’ll need to run through the following steps. 
 
 Step 1/ Make Sure you have a SSH Public key
 
@@ -13,7 +14,7 @@ It’s the .pub file or more precisely its contents that you’ll need. The publ
 
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfO/80wleUCYxY7Ws8c67PmqL2qRUfpdPGOduHmy9xT9HkCzjoZHHIk1Zx1VpFtQQM+RwJzArZQHXrMnvefleH20AvtbT9bo2cIIZ8446DX0hHPGaGYaJNn6mCeLi/wXW0+mJmKc2xIdasnH8Q686zmv72IZ9UzD12o+nns2FgCwfleQfyVIacjfi+dy4DB8znpb4KU5rKJi5Zl004pd1uSrRtlDKR9OGILvakyf87CnAP/T8ITSMy0HWpqc8dPHJq74S5jeQn/TxrZ6TGVA+xGLzLHN4fLCOGY20gH7w3rqNTqFuUIWuIf4OFdyZoFBQyh1GWMOaKjplUonBmeZlV
 
-Run this command from your terminal to copy it:
+If you have an already generated key that you'd like to use, then run this command from your terminal to copy it:
 pbcopy < ~/.ssh/id_rsa.pub
 
 Note that yours will be different. You’ll need this in step 3.
@@ -22,10 +23,12 @@ IMPORTANT TIP: If you already have a key that you have generated in the past and
 
 ssh-keygen -f id_rsa.pub -e -m pkcs8
 
+Then run the copy command from above.
+
 
 Step 2/ Create the ATP Instance
 
-You’ll have to have gone through the process of acquiring an Oracle Cloud account but that’s beyond the scope of this walkthrough. Once you have the account and have logged into Oracle Cloud Infrastructure, click on the menu button in the top left of the screen and select “Autonomous Transaction Processing”. Then simply follow these steps.
+For this section, you will need an Oracle Cloud account. Once you have the account and have logged into Oracle Cloud Infrastructure, click on the menu button in the top left of the screen and select “Autonomous Transaction Processing”. Then simply follow these steps.
 
 [screenshots]
 
