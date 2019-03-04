@@ -239,27 +239,14 @@ Order Entry Schemas Tables
 
 Step 7/ Run a workload
 The first thing we need to do is to configure the load generator to load the users on in a sensible fashion (i.e. to not exceed the login rate). You could do this manually by editing the config file or use the following command.
-sed -i -e 's/<LogonGroupCount>1<\/LogonGroupCount>/<LogonGroupCount>5<\/LogonGroupCount>/' \
-       -e 's/<LogonDelay>0<\/LogonDelay>/<LogonDelay>300<\/LogonDelay>/' \
-       -e 's/<WaitTillAllLogon>true<\/WaitTillAllLogon>/<WaitTillAllLogon>false<\/WaitTillAllLogon>/' \
-       ../configs/SOE_Server_Side_V2.xml
-view rawsedcommand.sh hosted with ❤ by GitHub
 
-We can now run a workload against the newly created schema using a command similar to 
-./charbench -c ../configs/SOE_Server_Side_V2.xml \
-            -cf ~/wallet_SBATP.zip \
-            -cs sbatp_low \
-            -u soe \
-            -p <your soe password> \
-            -v users,tpm,tps,vresp \
-            -intermin 0 \
-            -intermax 0 \
-            -min 0 \
-            -max 0 \
-            -uc 128 \
-            -di SQ,WQ,WA \
-            -rt 0:0.30
-view rawcharbenchcommad.sh hosted with ❤ by GitHub
+sed -i -e 's/<LogonGroupCount>1<\/LogonGroupCount>/<LogonGroupCount>5<\/LogonGroupCount>/' -e 's/<LogonDelay>0<\/LogonDelay>/<LogonDelay>300<\/LogonDelay>/' -e 's/<WaitTillAllLogon>true<\/WaitTillAllLogon>/<WaitTillAllLogon>false<\/WaitTillAllLogon>/' ../configs/SOE_Server_Side_V2.xml
+
+
+We can now run a workload against the newly created schema using a command similar to
+
+./charbench -c ../configs/SOE_Server_Side_V2.xml -cf ~/Wallet_SwingbenchATPZ.zip -cs swingbenchatp_low -u soe -p <soe password> -v users,tpm,tps,vresp -intermin 0 -intermax 0 -min 0 -max 0 -uc 128 -di SQ,WQ,WA -rt 0:0.30
+
 
 I won’t explain the parameters that I detailed earlier when running the wizard but for the new ones do the following
 
