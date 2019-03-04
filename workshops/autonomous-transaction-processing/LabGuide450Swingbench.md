@@ -196,7 +196,7 @@ The Order Entry Schema appears to be valid.
 
 You may have noticed that the stats failed to collect in the creation of the schema (known problem) so you’ll need to collect stats using the following command
 
-$>./sbutil -soe -cf ~/wallet_SBATP.zip -cs sbatp_medium -u soe -p -stats
+$>./sbutil -soe -cf ~/wallet_SBATP.zip -cs sbatp_medium -u soe -p <soe password again> -stats
 
 And see the row counts for the tables with 
 
