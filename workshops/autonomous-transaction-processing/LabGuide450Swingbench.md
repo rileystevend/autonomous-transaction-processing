@@ -36,7 +36,7 @@ Step 3/ Create a compute resource for the application server
 
 Whilst the ATP instance is creating we can create our application to run swingbench. For any reasonable load to be run against the application server you’ll need a minimum of two cores for larger workloads you may need a bigger application or potentially a small cluster of them. 
 
-In this walkthrough we’ll create a small 2 core Linux Server VM.
+In this walkthrough we’ll create a small 2 core Linux Server VM, but it is preferable to provision the 4-core to maximize packet downloading.
 
 [screenshots]
 
@@ -74,7 +74,7 @@ $> sudo yum install java-1.8.0-openjdk-headless.x86_64
 We should now make sure that java works correctly
 
 $> java -version
-openjdk version "1.8.0_181"
+openjdk version "1.8.0_201"
 OpenJDK Runtime Environment (build 1.8.0_181-b13)
 OpenJDK 64-Bit Server VM (build 25.181-b13, mixed mode)
 
@@ -99,7 +99,7 @@ Credentials 11-08-18, 4.09.07 pm
 
 You’ll need to upload this to our application server with a command similar to 
 
-**YOU MUST FIRST CD INTO THE DIRECTORY ON YOUR LOCAL MACHINE WHERE YOUR WALLET IS SAVED. USE A NEW TERMINAL WINDOW (WHILE OTHER IS HOLDING THE SSH CONNECTION)AND ENTER THIS COMMAND**
+**YOU MUST FIRST CD INTO THE DIRECTORY ON YOUR LOCAL MACHINE WHERE YOUR WALLET IS SAVED. USE A NEW TERMINAL WINDOW AND ENTER THIS COMMAND**
 
 $> scp wallet_SBATP.zip opc@129.146.65.101:
 
@@ -114,22 +114,9 @@ We can now install a schema to run our transactions against. We do this by first
 $> cd swingbench/bin
 
 And then running the following command replacing your passwords with those that you specified during the creation of the ATP instance.
-./oewizard -cf ~/wallet_SBATP.zip \
-           -cs sbatp_medium \
-           -ts DATA \
-           -dbap <your admin password> \
-           -dba admin \
-           -u soe \
-           -p <your soe password> \
-           -async_off \
-           -scale 5 \
-           -hashpart \
-           -create \
-           -cl \
-           -v
-           
-Without lines\/
-./oewizard -cf ~/Wallet_SwingbenchATPZ.zip -cs swingbenchatpx_medium -ts DATA -dbap <database password!!> Vicfirth91390 -dba admin -u soe -p Vicfirth91390 -async_off -scale 5 -hashpart -create -cl -v
+  
+For Copying Purposes\/
+./oewizard -cf ~/Wallet_SwingbenchATPZ.zip -cs swingbenchatp_medium -ts DATA -dbap <database password!!> -dba admin -u soe -p <create a Password> -async_off -scale 5 -hashpart -create -cl -v
 
 A quick explanation of the parameters we are using
 
@@ -180,6 +167,8 @@ Inserting data into table CUSTOMERS_500000
 Inserting data into table CUSTOMERS_2                                     
 Run time 0:00:19 : Running threads (8/8) : Percentage completed : 5.36
 
+There is a slowdown from 32% on....
+
 You can then validate the schema created correctly using the following command
 
 1
@@ -207,7 +196,7 @@ The Order Entry Schema appears to be valid.
 
 You may have noticed that the stats failed to collect in the creation of the schema (known problem) so you’ll need to collect stats using the following command
 
-$>./sbutil -soe -cf ~/wallet_SBATP.zip -cs sbatp_medium -u soe -p -stats
+$>./sbutil -soe -cf ~/wallet_SBATP.zip -cs sbatp_medium -u soe -p <soe password again> -stats
 
 And see the row counts for the tables with 
 
