@@ -58,7 +58,7 @@ $> ssh opc@129.146.65.101
 ECDSA key fingerprint is SHA256:kNbpKWL3M1wB6PUFy2GOl+JmaTIxLQiggMzn6vl2qK1tM.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '129.146.65.101' (ECDSA) to the list of known hosts.
-Enter passphrase for key '/Users/dgiles/.ssh/id_rsa':
+
 [opc@swingbench-client ~]$
 
 
@@ -74,9 +74,11 @@ $> sudo yum install java-1.8.0-openjdk-headless.x86_64
 We should now make sure that java works correctly
 
 $> java -version
+
 openjdk version "1.8.0_201"
 OpenJDK Runtime Environment (build 1.8.0_181-b13)
 OpenJDK 64-Bit Server VM (build 25.181-b13, mixed mode)
+
 
 We can now pull the swingbench code from the website
 
@@ -239,27 +241,14 @@ Order Entry Schemas Tables
 
 Step 7/ Run a workload
 The first thing we need to do is to configure the load generator to load the users on in a sensible fashion (i.e. to not exceed the login rate). You could do this manually by editing the config file or use the following command.
-sed -i -e 's/<LogonGroupCount>1<\/LogonGroupCount>/<LogonGroupCount>5<\/LogonGroupCount>/' \
-       -e 's/<LogonDelay>0<\/LogonDelay>/<LogonDelay>300<\/LogonDelay>/' \
-       -e 's/<WaitTillAllLogon>true<\/WaitTillAllLogon>/<WaitTillAllLogon>false<\/WaitTillAllLogon>/' \
-       ../configs/SOE_Server_Side_V2.xml
-view rawsedcommand.sh hosted with ❤ by GitHub
 
-We can now run a workload against the newly created schema using a command similar to 
-./charbench -c ../configs/SOE_Server_Side_V2.xml \
-            -cf ~/wallet_SBATP.zip \
-            -cs sbatp_low \
-            -u soe \
-            -p <your soe password> \
-            -v users,tpm,tps,vresp \
-            -intermin 0 \
-            -intermax 0 \
-            -min 0 \
-            -max 0 \
-            -uc 128 \
-            -di SQ,WQ,WA \
-            -rt 0:0.30
-view rawcharbenchcommad.sh hosted with ❤ by GitHub
+sed -i -e 's/<LogonGroupCount>1<\/LogonGroupCount>/<LogonGroupCount>5<\/LogonGroupCount>/' -e 's/<LogonDelay>0<\/LogonDelay>/<LogonDelay>300<\/LogonDelay>/' -e 's/<WaitTillAllLogon>true<\/WaitTillAllLogon>/<WaitTillAllLogon>false<\/WaitTillAllLogon>/' ../configs/SOE_Server_Side_V2.xml
+
+
+We can now run a workload against the newly created schema using a command similar to
+
+./charbench -c ../configs/SOE_Server_Side_V2.xml -cf ~/Wallet_SwingbenchATPZ.zip -cs swingbenchatp_low -u soe -p <soe password> -v users,tpm,tps,vresp -intermin 0 -intermax 0 -min 0 -max 0 -uc 128 -di SQ,WQ,WA -rt 0:0.30
+
 
 I won’t explain the parameters that I detailed earlier when running the wizard but for the new ones do the following
 
@@ -270,36 +259,7 @@ I won’t explain the parameters that I detailed earlier when running the wizard
 •	-rt indicates how long to run the benchmark before stopping it
 
 You should see output similar to the following
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
+
 31
 32
 33
