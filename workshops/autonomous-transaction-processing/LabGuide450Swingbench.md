@@ -58,7 +58,7 @@ $> ssh opc@129.146.65.101
 ECDSA key fingerprint is SHA256:kNbpKWL3M1wB6PUFy2GOl+JmaTIxLQiggMzn6vl2qK1tM.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '129.146.65.101' (ECDSA) to the list of known hosts.
-Enter passphrase for key '/Users/dgiles/.ssh/id_rsa':
+
 [opc@swingbench-client ~]$
 
 
@@ -74,9 +74,11 @@ $> sudo yum install java-1.8.0-openjdk-headless.x86_64
 We should now make sure that java works correctly
 
 $> java -version
+
 openjdk version "1.8.0_201"
 OpenJDK Runtime Environment (build 1.8.0_181-b13)
 OpenJDK 64-Bit Server VM (build 25.181-b13, mixed mode)
+
 
 We can now pull the swingbench code from the website
 
@@ -257,36 +259,7 @@ I won’t explain the parameters that I detailed earlier when running the wizard
 •	-rt indicates how long to run the benchmark before stopping it
 
 You should see output similar to the following
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
+
 31
 32
 33
